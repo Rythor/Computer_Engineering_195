@@ -1,8 +1,18 @@
-# Computer_Engineering_195
-Senior Project - Window Specialist
+# CMPE195 Senior Design Project
 
-* Team Members
-1) Ryan Biesty
-2) Brandon Cheu
-3) Casey Delaney
-4) Brain Tamsing
+## A mobile window quoting application for contractors, developed for The Window Specialist.
+
+...
+
+## Built With
+
+- Swift
+- SwiftUI
+
+## Authors
+
+- Ryan Biesty, *Developer*
+- Brandon Cheu, *Developer*
+- Casey Delaney, *Developer*
+- Brian Tamsing, *Developer*
+
