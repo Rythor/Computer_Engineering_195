@@ -13,6 +13,11 @@ import SwiftUI
 struct TWSTabView: View {
     var body: some View {
         TabView {
+            QuoteView()
+                .tabItem {
+                    Image(systemName: "pencil.slash")
+                    Text("Quote")
+                }
             RecentView()
                 .tabItem {
                     Image(systemName: "mail.stack")

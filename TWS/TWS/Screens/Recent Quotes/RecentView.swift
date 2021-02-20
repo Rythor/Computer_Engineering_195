@@ -20,8 +20,8 @@ struct RecentView: View {
                     LazyVGrid(columns: viewModel.columns) {
                         ForEach(viewModel.recentQuotes.indices) { index in
                             WavyQuoteCard(quote: viewModel.recentQuotes[index],
-                                      colorOne: Gradients.gradients[index % Gradients.gradients.count][0],
-                                      colorTwo: Gradients.gradients[index % Gradients.gradients.count][1])
+                                      color1: Gradients.gradients[index % Gradients.gradients.count][0],
+                                      color2: Gradients.gradients[index % Gradients.gradients.count][1])
                             .padding(.top, 20)
                             .padding(.bottom, 20)
                             .onTapGesture {

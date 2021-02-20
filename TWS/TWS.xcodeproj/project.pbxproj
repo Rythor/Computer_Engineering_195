@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		274ADB6025DA34960006E13E /* BackArrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274ADB5F25DA34960006E13E /* BackArrow.swift */; };
+		274ADB6525DA37060006E13E /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274ADB6425DA37060006E13E /* QuoteView.swift */; };
+		274ADB6825DA37110006E13E /* QuoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274ADB6725DA37110006E13E /* QuoteViewModel.swift */; };
+		274ADB6B25DA3D9B0006E13E /* Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274ADB6A25DA3D9B0006E13E /* Window.swift */; };
+		2776138F25DFB352005CB95E /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2776138E25DFB351005CB95E /* DatabaseManager.swift */; };
+		2776139425E05024005CB95E /* SQLiteError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2776139325E05024005CB95E /* SQLiteError.swift */; };
 		2779998825C9EAAF00D6D84F /* TWSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2779998725C9EAAF00D6D84F /* TWSApp.swift */; };
 		2779998A25C9EAAF00D6D84F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2779998925C9EAAF00D6D84F /* ContentView.swift */; };
 		2779998C25C9EAB300D6D84F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2779998B25C9EAB300D6D84F /* Assets.xcassets */; };
@@ -20,9 +26,16 @@
 		277999B525C9F06400D6D84F /* RecentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277999B425C9F06400D6D84F /* RecentViewModel.swift */; };
 		277999B825C9F08100D6D84F /* QuoteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277999B725C9F08100D6D84F /* QuoteDetailView.swift */; };
 		277999BB25C9F9A000D6D84F /* WavyQuoteCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277999BA25C9F9A000D6D84F /* WavyQuoteCard.swift */; };
+		27D1617A25CB2E44004ED226 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D1617925CB2E44004ED226 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		274ADB5F25DA34960006E13E /* BackArrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackArrow.swift; sourceTree = "<group>"; };
+		274ADB6425DA37060006E13E /* QuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteView.swift; sourceTree = "<group>"; };
+		274ADB6725DA37110006E13E /* QuoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteViewModel.swift; sourceTree = "<group>"; };
+		274ADB6A25DA3D9B0006E13E /* Window.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Window.swift; sourceTree = "<group>"; };
+		2776138E25DFB351005CB95E /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		2776139325E05024005CB95E /* SQLiteError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteError.swift; sourceTree = "<group>"; };
 		2779998425C9EAAF00D6D84F /* TWS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TWS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2779998725C9EAAF00D6D84F /* TWSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TWSApp.swift; sourceTree = "<group>"; };
 		2779998925C9EAAF00D6D84F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -38,6 +51,7 @@
 		277999B425C9F06400D6D84F /* RecentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentViewModel.swift; sourceTree = "<group>"; };
 		277999B725C9F08100D6D84F /* QuoteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteDetailView.swift; sourceTree = "<group>"; };
 		277999BA25C9F9A000D6D84F /* WavyQuoteCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WavyQuoteCard.swift; sourceTree = "<group>"; };
+		27D1617925CB2E44004ED226 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +65,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		274ADB6325DA36E70006E13E /* Generate Quotes */ = {
+			isa = PBXGroup;
+			children = (
+				274ADB6425DA37060006E13E /* QuoteView.swift */,
+				274ADB6725DA37110006E13E /* QuoteViewModel.swift */,
+			);
+			path = "Generate Quotes";
+			sourceTree = "<group>";
+		};
 		2779997B25C9EAAF00D6D84F = {
 			isa = PBXGroup;
 			children = (
@@ -70,12 +93,13 @@
 		2779998625C9EAAF00D6D84F /* TWS */ = {
 			isa = PBXGroup;
 			children = (
-				277999AA25C9EF6D00D6D84F /* Screens */,
-				2779999825C9EB0700D6D84F /* Views */,
+				27D1617825CB2E39004ED226 /* Managers */,
 				2779999725C9EB0300D6D84F /* Models */,
+				2779999825C9EB0700D6D84F /* Views */,
+				277999AA25C9EF6D00D6D84F /* Screens */,
 				2779999925C9EB0F00D6D84F /* Utilities */,
-				2779998725C9EAAF00D6D84F /* TWSApp.swift */,
 				2779998925C9EAAF00D6D84F /* ContentView.swift */,
+				2779998725C9EAAF00D6D84F /* TWSApp.swift */,
 				2779998B25C9EAB300D6D84F /* Assets.xcassets */,
 				2779999025C9EAB300D6D84F /* Info.plist */,
 				2779998D25C9EAB300D6D84F /* Preview Content */,
@@ -95,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				2779999A25C9EB3200D6D84F /* Quote.swift */,
+				274ADB6A25DA3D9B0006E13E /* Window.swift */,
 				2779999E25C9EBCA00D6D84F /* MockData.swift */,
 			);
 			path = Models;
@@ -106,6 +131,7 @@
 				277999A125C9EC5600D6D84F /* QuoteCard.swift */,
 				277999BA25C9F9A000D6D84F /* WavyQuoteCard.swift */,
 				277999B725C9F08100D6D84F /* QuoteDetailView.swift */,
+				274ADB5F25DA34960006E13E /* BackArrow.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -113,35 +139,38 @@
 		2779999925C9EB0F00D6D84F /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				277999A425C9EC9D00D6D84F /* Gradients */,
+				277999A525C9ECAC00D6D84F /* Gradients.swift */,
+				2776139325E05024005CB95E /* SQLiteError.swift */,
 			);
 			path = Utilities;
-			sourceTree = "<group>";
-		};
-		277999A425C9EC9D00D6D84F /* Gradients */ = {
-			isa = PBXGroup;
-			children = (
-				277999A525C9ECAC00D6D84F /* Gradients.swift */,
-			);
-			path = Gradients;
 			sourceTree = "<group>";
 		};
 		277999AA25C9EF6D00D6D84F /* Screens */ = {
 			isa = PBXGroup;
 			children = (
 				277999AB25C9EF8D00D6D84F /* TWSTabView.swift */,
-				277999AF25C9EFCD00D6D84F /* Recent */,
+				274ADB6325DA36E70006E13E /* Generate Quotes */,
+				277999AF25C9EFCD00D6D84F /* Recent Quotes */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
 		};
-		277999AF25C9EFCD00D6D84F /* Recent */ = {
+		277999AF25C9EFCD00D6D84F /* Recent Quotes */ = {
 			isa = PBXGroup;
 			children = (
 				277999B025C9F04C00D6D84F /* RecentView.swift */,
 				277999B425C9F06400D6D84F /* RecentViewModel.swift */,
 			);
-			path = Recent;
+			path = "Recent Quotes";
+			sourceTree = "<group>";
+		};
+		27D1617825CB2E39004ED226 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				27D1617925CB2E44004ED226 /* NetworkManager.swift */,
+				2776138E25DFB351005CB95E /* DatabaseManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,13 +246,20 @@
 				2779998A25C9EAAF00D6D84F /* ContentView.swift in Sources */,
 				277999AC25C9EF8D00D6D84F /* TWSTabView.swift in Sources */,
 				277999A225C9EC5600D6D84F /* QuoteCard.swift in Sources */,
+				2776138F25DFB352005CB95E /* DatabaseManager.swift in Sources */,
 				2779999F25C9EBCA00D6D84F /* MockData.swift in Sources */,
 				277999B825C9F08100D6D84F /* QuoteDetailView.swift in Sources */,
+				274ADB6825DA37110006E13E /* QuoteViewModel.swift in Sources */,
 				2779999B25C9EB3200D6D84F /* Quote.swift in Sources */,
 				2779998825C9EAAF00D6D84F /* TWSApp.swift in Sources */,
+				27D1617A25CB2E44004ED226 /* NetworkManager.swift in Sources */,
 				277999A625C9ECAC00D6D84F /* Gradients.swift in Sources */,
 				277999B125C9F04C00D6D84F /* RecentView.swift in Sources */,
+				274ADB6525DA37060006E13E /* QuoteView.swift in Sources */,
+				274ADB6025DA34960006E13E /* BackArrow.swift in Sources */,
 				277999B525C9F06400D6D84F /* RecentViewModel.swift in Sources */,
+				2776139425E05024005CB95E /* SQLiteError.swift in Sources */,
+				274ADB6B25DA3D9B0006E13E /* Window.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

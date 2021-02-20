@@ -11,7 +11,6 @@ import SwiftUI
 /// Handles all data logic for the recents quotes screen.
 ///
 class RecentViewModel: ObservableObject {
-    @Published var isExpanded: Bool = true
     @Published var isShowingDetailView: Bool = false
 
     var selectedQuote: Quote?

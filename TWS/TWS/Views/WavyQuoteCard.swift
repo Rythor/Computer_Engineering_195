@@ -11,17 +11,17 @@ import SwiftUI
 /// Wraps a QuoteCard to provide an animation upon every app launch / QuoteCard coming into the view.
 ///
 struct WavyQuoteCard: View {
-    var quote                       : Quote
-    var colorOne                    : Color
-    var colorTwo                    : Color
+    var quote   : Quote
+    var color1  : Color
+    var color2  : Color
     
     @State private var hasAppeared  : Bool = false
     
     var body: some View {
         ZStack {
             QuoteCard(quote: quote,
-                      colorOne: colorOne,
-                      colorTwo: colorTwo)
+                      color1: color1,
+                      color2: color2)
         }
         .rotation3DEffect(
             Angle(degrees: hasAppeared ? 0 : 20),
@@ -41,7 +41,7 @@ struct WavyQuoteCard: View {
 struct WavyQuoteCard_Previews: PreviewProvider {
     static var previews: some View {
         WavyQuoteCard(quote: MockData.sampleQuotes[0],
-                      colorOne: Gradients.gradients[0][0],
-                      colorTwo: Gradients.gradients[0][1])
+                      color1: Gradients.gradients[0][0],
+                      color2: Gradients.gradients[0][1])
     }
 }

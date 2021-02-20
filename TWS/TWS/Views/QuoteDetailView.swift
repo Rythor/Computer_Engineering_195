@@ -8,7 +8,7 @@
 import SwiftUI
 
 ///
-/// Provides a Quote's details (ranging from window type, to color, dimensions, etc.)
+/// Provides a Quote's details.
 ///
 /// Will be presented as a Modal on the Recent's screen when the user taps on a card.
 ///
@@ -21,13 +21,10 @@ struct QuoteDetailView: View {
     var body: some View {
         ZStack {
             NavigationView {
-                VStack {
+                VStack(spacing: 5) {
                     QuoteCard(quote: quote,
-                              colorOne: Gradients.gradients[quoteIndex % Gradients.gradients.count][0],
-                              colorTwo: Gradients.gradients[quoteIndex % Gradients.gradients.count][1])
-                    Spacer()
-                    Text("insert actual details here...")
-                        .multilineTextAlignment(.center)
+                              color1: Gradients.gradients[quoteIndex % Gradients.gradients.count][0],
+                              color2: Gradients.gradients[quoteIndex % Gradients.gradients.count][1])
                     Spacer()
                 }
                 .padding()
@@ -35,12 +32,7 @@ struct QuoteDetailView: View {
                 .navigationBarItems(leading: Button {
                     isShowingDetailView = false
                 } label: {
-                    Image(systemName: "chevron.backward")
-                        .font(.title2)
-                        .foregroundColor(Color(.label))
-                        .frame(width: 36, height: 36)
-                        .background(Color(UIColor.secondarySystemBackground).opacity(0.5))
-                        .mask(Circle())
+                    BackArrow()
                 })
             }
             .background(Color(UIColor.systemBackground))

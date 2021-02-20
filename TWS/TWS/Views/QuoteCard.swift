@@ -11,9 +11,9 @@ import SwiftUI
 /// Represents a quote in a card shaped view.
 ///
 struct QuoteCard: View {
-    var quote                       : Quote
-    var colorOne                    : Color
-    var colorTwo                    : Color
+    var quote   : Quote
+    var color1  : Color
+    var color2  : Color
     
     var body: some View {
         VStack {
@@ -23,13 +23,13 @@ struct QuoteCard: View {
         }
         .padding()
         .frame(height: 220)
-        .background(RadialGradient(gradient: Gradient(colors: [colorOne, colorTwo]),
+        .background(RadialGradient(gradient: Gradient(colors: [color1, color2]),
                                    center: .topLeading,
                                    startRadius: 5,
                                    endRadius: 500))
         .opacity(0.9)
         .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-        .shadow(color: colorTwo.opacity(0.3), radius: 20, y: 10)
+        .shadow(color: color2.opacity(0.3), radius: 20, y: 10)
     }
 }
 
@@ -38,8 +38,8 @@ struct QuoteCard: View {
 struct QuoteCard_Previews: PreviewProvider {
     static var previews: some View {
         QuoteCard(quote: MockData.sampleQuotes[0],
-                  colorOne: Gradients.gradients[0][0],
-                  colorTwo: Gradients.gradients[0][1])
+                  color1: Gradients.gradients[0][0],
+                  color2: Gradients.gradients[0][1])
     }
 }
 
