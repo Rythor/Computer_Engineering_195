@@ -16,7 +16,7 @@ class NetworkManager {
     
     private init() { }
     
-    public func getQuote(_ quote: Quote, completionHandler: @escaping (Result<Quote, Error>) -> Void) {
+    public func getQuote(_ quote: QuoteSummary, completionHandler: @escaping (Result<QuoteSummary, Error>) -> Void) {
         // ...
     }
 }

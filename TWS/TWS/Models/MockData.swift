@@ -12,7 +12,7 @@ import Foundation
 ///
 struct MockData {
     // Quotes
-    static let sampleQuotes     : [Quote]       = Array(repeating: Quote(client: "John Appleseed"), count: 8)
+    static let sampleQuotes     : [QuoteSummary]       = Array(repeating: QuoteSummary(client: "John Appleseed"), count: 8)
     
     // Windows
     static let sampleGasTypes   : [GlassType]   = [.lowE270, .lowE360, .obscured]

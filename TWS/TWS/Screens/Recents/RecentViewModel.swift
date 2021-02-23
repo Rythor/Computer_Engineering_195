@@ -13,7 +13,7 @@ import SwiftUI
 class RecentViewModel: ObservableObject {
     @Published var isShowingDetailView: Bool = false
 
-    var selectedQuote: Quote?
+    var selectedQuote: QuoteSummary?
     var selectedIndex: Int?
     
     var recentQuotes = MockData.sampleQuotes

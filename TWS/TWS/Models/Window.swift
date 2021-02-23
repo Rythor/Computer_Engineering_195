@@ -10,13 +10,15 @@ import Foundation
 ///
 /// Represents a Window instance.
 ///
-struct Window {
-    var width               : String
-    var height              : String
+struct Window: Encodable, Identifiable {
+    let id                                      = UUID()
     
-    var label               : String
+    var width               : String            = ""
+    var height              : String            = ""
     
-    var type                : WindowType?
+    var label               : String            = ""
+    
+    var type                : WindowType        = .singleHung
     var casementSideType    : CasementSideType  = .defaultType
     var glassType           : GlassType         = .defaultType
     var gasType             : GasType           = .defaultType
@@ -28,52 +30,52 @@ struct Window {
 
 
 // MARK: - Choices
-
-enum WindowType: String {
-    case singleHung         = "SH"
-    case doubleHung         = "DH"
-    case casement           = "casement"
-    case awning             = "awning"
+// note: models.py differences in value casing
+enum WindowType: String, CaseIterable, Encodable {
+    case singleHung         = "Single Hung"
+    case doubleHung         = "Double Hung"
+    case casement           = "Casement"
+    case awning             = "Awning"
 }
 
-enum CasementSideType: String {
-    case right              = "right"
-    case left               = "left"
-    
+enum CasementSideType: String, CaseIterable, Encodable {
     case defaultType        = "N/A"
+    
+    case right              = "Right"
+    case left               = "Left"
 }
 
-enum SliderType: String {
+enum SliderType: String, CaseIterable, Encodable {
     case xo                 = "XO"
     case ox                 = "OX"
 }
 
-enum GlassType: String {
+enum GlassType: String, CaseIterable, Encodable {
+    case defaultType        = "N/A"
+    
     case lowE270            = "Low-E 270"
     case lowE360            = "Low-E 360"
     case obscured           = "Obscured"
-    
-    case defaultType        = "N/A"
 }
 
-enum GasType: String {
+enum GasType: String, CaseIterable, Encodable {
+    case defaultType        = "N/A"
+    
     case yes                = "Yes"
     case no                 = "No"
-    
-    case defaultType        = "N/A"
 }
 
-enum TemperedType: String {
+enum TemperedType: String, CaseIterable, Encodable {
+    case defaultType        = "N/A"
+    
     case tempered           = "Tempered"
     case noTempered         = "No Tempered"
-    
-    case defaultType        = "N/A"
 }
 
-enum FrameType: String {
+enum FrameType: String, CaseIterable, Encodable {
+    case defaultType        = "N/A"
+    
     case blockFrame         = "Block"
     case nailFin            = "Nail Fin"
     case retrofit           = "Stucco"
-    
-    case defaultType        = "N/A"
 }

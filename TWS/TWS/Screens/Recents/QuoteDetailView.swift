@@ -13,7 +13,7 @@ import SwiftUI
 /// Will be presented as a Modal on the Recent's screen when the user taps on a card.
 ///
 struct QuoteDetailView: View {
-    let quote                           : Quote
+    let quote                           : QuoteSummary
     let quoteIndex                      : Int
     
     @Binding var isShowingDetailView    : Bool

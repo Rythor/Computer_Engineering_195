@@ -11,6 +11,8 @@ import SwiftUI
 /// Represents the entire application's tab view.
 ///
 struct TWSTabView: View {
+    var quote = Quote()
+    
     var body: some View {
         TabView {
             QuoteView()
@@ -23,8 +25,14 @@ struct TWSTabView: View {
                     Image(systemName: "mail.stack")
                     Text("Recent")
                 }
+            SummaryView()
+                .tabItem {
+                    Image(systemName: "cart")
+                    Text("Summary")
+                }
         }
         .accentColor(.primary)
+        .environmentObject(quote)
     }
 }
 

@@ -13,11 +13,10 @@ import SQLite3
 ///
 class DatabaseManager {
     // MARK: - Properties
-    var db: OpaquePointer?
-    var errorMessage: String {
-        if let err = sqlite3_errmsg(self.db) {
-            let message = String(cString: err)
-            return message
+    private var db: OpaquePointer?
+    private var errorMessage: String {
+        if let error = sqlite3_errmsg(self.db) {
+            return String(cString: error)
         } else {
             return "No error message was provided by SQLite"
         }
@@ -27,7 +26,7 @@ class DatabaseManager {
     // MARK: - Init
     init(dbPath: String) {
         do {
-            self.db = try openConnection(dbPath: dbPath)
+            try openConnection(dbPath: dbPath)
         } catch {
             print(error) // for debugging purposes only
         }
@@ -36,9 +35,7 @@ class DatabaseManager {
     
     
     // MARK: - Methods
-    func openConnection(dbPath: String) throws -> OpaquePointer? {
-        var db: OpaquePointer?
-        
+    func openConnection(dbPath: String) throws {
         guard let dbURL = try? FileManager.default.url(for: .documentDirectory,
                                                        in: .userDomainMask,
                                                        appropriateFor: nil,
@@ -46,15 +43,11 @@ class DatabaseManager {
             throw SQLiteError.invalidURL()
         }
         
-        if sqlite3_open(dbURL.path, &db) == SQLITE_OK {
+        if sqlite3_open(dbURL.path, &self.db) == SQLITE_OK {
             print("db connection opened")
         } else {
-            if let errormsg = sqlite3_errmsg(db) {
-                throw SQLiteError.failedToOpen(String(cString: errormsg))
-            }
+            throw SQLiteError.failedToOpen(errorMessage)
         }
-        
-        return db
     }
     
     func closeConnection() throws {

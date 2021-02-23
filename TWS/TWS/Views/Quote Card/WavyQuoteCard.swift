@@ -11,7 +11,7 @@ import SwiftUI
 /// Wraps a QuoteCard to provide an animation upon every app launch / QuoteCard coming into the view.
 ///
 struct WavyQuoteCard: View {
-    var quote   : Quote
+    var quote   : QuoteSummary
     var color1  : Color
     var color2  : Color
     

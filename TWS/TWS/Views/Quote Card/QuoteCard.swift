@@ -11,7 +11,7 @@ import SwiftUI
 /// Represents a quote in a card shaped view.
 ///
 struct QuoteCard: View {
-    var quote   : Quote
+    var quote   : QuoteSummary
     var color1  : Color
     var color2  : Color
     
@@ -48,12 +48,12 @@ struct QuoteCard_Previews: PreviewProvider {
 
 // MARK: - Header View
 struct HeaderView: View {
-    let quote: Quote
+    let quote: QuoteSummary
     
     var body: some View {
         HStack(alignment: .top) {
             VStack(alignment: .leading, spacing: 4) {
-                Text(quote.client)
+                Text("John Appleseed") // changed
                     .font(.title2)
                 Text("1 Infinite Loop, Cupertino CA")
                     .font(.subheadline)

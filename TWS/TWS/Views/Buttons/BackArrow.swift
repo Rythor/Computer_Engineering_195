@@ -1,5 +1,5 @@
 //
-//  BackButton.swift
+//  BackArrow.swift
 //  TWS
 //
 //  Created by Brian Tamsing on 2/14/21.
@@ -18,7 +18,7 @@ struct BackArrow: View {
     }
 }
 
-struct BackButton_Previews: PreviewProvider {
+struct BackArrow_Previews: PreviewProvider {
     static var previews: some View {
         BackArrow()
     }
