@@ -20,15 +20,15 @@ struct TWSTabView: View {
                     Image(systemName: "pencil.slash")
                     Text("Quote")
                 }
-            RecentView()
-                .tabItem {
-                    Image(systemName: "mail.stack")
-                    Text("Recent")
-                }
             SummaryView()
                 .tabItem {
                     Image(systemName: "cart")
                     Text("Summary")
+                }
+            RecentView()
+                .tabItem {
+                    Image(systemName: "mail.stack")
+                    Text("Recent")
                 }
         }
         .accentColor(.primary)

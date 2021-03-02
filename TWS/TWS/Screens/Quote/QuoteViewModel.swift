@@ -10,6 +10,7 @@ import SwiftUI
 class QuoteViewModel: ObservableObject {
     // MARK: - Properties
     @Published var window = Window()
+    @Published var alertItem: AlertItem?
     
     // window type
     @Published var windowTypeSelectedIndex          : Int       = 0 {
@@ -76,6 +77,14 @@ class QuoteViewModel: ObservableObject {
     }
     let frameTypes                                  : [String]  = FrameType.allCases.map { $0.rawValue }
     
+    var isValidForm: Bool {
+        self.alertItem = AlertContext.invalidForm
+        return false
+    }
+    
+    
+    // MARK: - Methods
+    
     
     // MARK: - Currently, Unused
     @Published var hasPickerOpen                    : Bool      = false
@@ -85,12 +94,6 @@ class QuoteViewModel: ObservableObject {
     @Published var isShowingGasTypePicker           : Bool      = false
     @Published var isShowingTemperedTypePicker      : Bool      = false
     @Published var isShowingFrameTypePicker         : Bool      = false
-    
-    
-    // MARK: - Methods
-    func getWindow() {
-        print(self.window)
-    }
     
     func closePickers() {
         hasPickerOpen               = false

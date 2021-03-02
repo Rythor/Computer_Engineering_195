@@ -26,5 +26,8 @@ struct SummaryView: View {
             }
             .navigationTitle("Summary")
         }
+        .onAppear {
+            AuthManager.shared.requestAuth()
+        }
     }
 }
