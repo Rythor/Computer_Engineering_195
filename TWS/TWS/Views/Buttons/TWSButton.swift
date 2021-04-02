@@ -18,7 +18,7 @@ struct TWSButton: View {
                 .fontWeight(.medium)
         }
         .frame(width: 280, height: 50)
-        .background(Color.blue)
+        .background(Color.twsBlue)
         .cornerRadius(5)
     }
 }

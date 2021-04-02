@@ -1,5 +1,5 @@
 //
-//  SummaryView.swift
+//  OrderView.swift
 //  TWS
 //
 //  Created by Brian Tamsing on 2/20/21.
@@ -8,10 +8,12 @@
 import SwiftUI
 
 ///
-/// The quote summary screen.
+/// The quote "shopping cart" screen.
 ///
-struct SummaryView: View {
+struct OrderView: View {
     @EnvironmentObject var quote: Quote
+    
+    @State private var isExpanded: Bool = false
     
     var body: some View {
         NavigationView {
@@ -24,7 +26,7 @@ struct SummaryView: View {
                 }
                 .listStyle(PlainListStyle())
             }
-            .navigationTitle("Summary")
+            .navigationTitle("Order")
         }
         .onAppear {
             AuthManager.shared.requestAuth()

@@ -13,8 +13,6 @@ struct SelectionView: View {
     // here
     var options                         : [String]
     @Binding var selectedIndex          : Int
-    @Binding var isShowingPicker        : Bool
-    @Binding var hasPickerOpen          : Bool
     
     var body: some View {
         Picker(selection: $selectedIndex,
@@ -28,7 +26,6 @@ struct SelectionView: View {
                         Image(systemName: "chevron.down")
                             .frame(width: 50, height: 50)
                             .foregroundColor(.white)
-                            .rotationEffect(Angle(degrees: isShowingPicker ? 180 : 0))
                             .animation(.spring())
                     }
                     .padding()
@@ -48,6 +45,9 @@ struct SelectionView: View {
 
 struct SelectionView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectionView(options: ["sample"], selectedIndex: .constant(0), isShowingPicker: .constant(false), hasPickerOpen: .constant(false))
+        SelectionView(
+            options: ["sample 1", "sample 2"],
+            selectedIndex: .constant(0)
+        )
     }
 }

@@ -11,7 +11,7 @@ import SwiftUI
 struct TWSApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TWSTabView()
         }
     }
 }

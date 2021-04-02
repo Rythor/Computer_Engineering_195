@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct SectionHeader: View {
-    let header: String
+    let text: String
     var body: some View {
         HStack {
-            Text(header)
+            Text(text)
                 .font(.title2)
                 .fontWeight(.semibold)
                 .foregroundColor(.primary)
@@ -22,6 +22,6 @@ struct SectionHeader: View {
 
 struct SectionHeader_Previews: PreviewProvider {
     static var previews: some View {
-        SectionHeader(header: "Sample")
+        SectionHeader(text: "Sample")
     }
 }

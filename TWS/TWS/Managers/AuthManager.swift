@@ -21,11 +21,11 @@ final class AuthManager {
     
     private let tenantName      : StaticString  = "KeithDefault"
     
-    private var accessToken     = "" // valid for only 24 hours! regenerate using the userKey
+    private var accessToken     : String? // valid for only 24 hours! regenerate using the userKey
 
     
     // MARK: - Init
-    private init() {}
+    private init() { }
     
     
     // MARK: - Methods
@@ -71,8 +71,8 @@ final class AuthManager {
                 let jsonObject = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
                 // now decode the json
                 if let json = jsonObject as? [String: Any] {
-                    if let accessToken = json["access_token"] {
-                        self.accessToken = accessToken as! String
+                    if let accessToken = json["access_token"] as? String {
+                        self.accessToken = accessToken
                     } else {
                         print("could not find any access token")
                     }
@@ -84,4 +84,7 @@ final class AuthManager {
         task.resume()
     }
     
+    public func getAccessToken() -> String? {
+        return self.accessToken
+    }
 }

@@ -11,7 +11,7 @@ import SQLite3
 ///
 /// Manages connections to a SQLite Database.
 ///
-class DatabaseManager {
+final class DatabaseManager {
     // MARK: - Properties
     private var db: OpaquePointer?
     private var errorMessage: String {

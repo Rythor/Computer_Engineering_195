@@ -53,7 +53,7 @@ struct HeaderView: View {
     var body: some View {
         HStack(alignment: .top) {
             VStack(alignment: .leading, spacing: 4) {
-                Text("John Appleseed") // changed
+                Text(quote.client)
                     .font(.title2)
                 Text("1 Infinite Loop, Cupertino CA")
                     .font(.subheadline)

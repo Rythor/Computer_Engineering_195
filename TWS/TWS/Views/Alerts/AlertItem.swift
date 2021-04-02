@@ -8,12 +8,22 @@
 import SwiftUI
 
 struct AlertItem {
-    let message : String
-    let image   : String
-    let color   : Color
+    let title       : Text
+    let message     : Text
+    let image       : String
+    let imageColor  : Color
 }
 
 struct AlertContext {
-    static let windowAdded  = AlertItem(message: "Added", image: "checkmark", color: .black)
-    static let invalidForm  = AlertItem(message: "Invalid Form", image: "exclamationmark.circle", color: .red)
+    static let none         = AlertItem(title: Text(""),
+                                        message: Text(""),
+                                        image: "questionmark", imageColor: .blue)
+    
+    static let windowAdded  = AlertItem(title: Text("Success!"),
+                                        message: Text("Window added"),
+                                        image: "checkmark", imageColor: .twsBlue)
+    
+    static let invalidForm  = AlertItem(title: Text("Invalid Form"),
+                                        message: Text("Invalid form"),
+                                        image: "exclamationmark.circle", imageColor: .red)
 }

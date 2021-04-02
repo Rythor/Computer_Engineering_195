@@ -17,15 +17,15 @@ struct TWSTabView: View {
         TabView {
             QuoteView()
                 .tabItem {
-                    Image(systemName: "pencil.slash")
+                    Image(systemName: "house")
                     Text("Quote")
                 }
-            SummaryView()
+            OrderView()
                 .tabItem {
-                    Image(systemName: "cart")
-                    Text("Summary")
+                    Image(systemName: "bag")
+                    Text("Order")
                 }
-            RecentView()
+            RecentQuotesView()
                 .tabItem {
                     Image(systemName: "mail.stack")
                     Text("Recent")

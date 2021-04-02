@@ -10,14 +10,13 @@ import SwiftUI
 class QuoteViewModel: ObservableObject {
     // MARK: - Properties
     @Published var window = Window()
-    @Published var alertItem: AlertItem?
+    @Published var alertItem = AlertContext.none
+    @Published var isPresentingToast: Bool = false
     
     // window type
     @Published var windowTypeSelectedIndex          : Int       = 0 {
         didSet {
             self.window.type            = WindowType.allCases[windowTypeSelectedIndex]
-            isShowingWindowTypePicker   = false
-            hasPickerOpen               = false
         }
     }
     let windowTypes                                 : [String]  = WindowType.allCases.map { $0.rawValue }
@@ -27,8 +26,6 @@ class QuoteViewModel: ObservableObject {
     @Published var casementTypeSelectedIndex        : Int       = 0 {
         didSet {
             self.window.casementSideType    = CasementSideType.allCases[casementTypeSelectedIndex]
-            isShowingCasementTypePicker     = false
-            hasPickerOpen                   = false
         }
     }
     let casementTypes                               : [String]  = CasementSideType.allCases.map { $0.rawValue }
@@ -38,8 +35,6 @@ class QuoteViewModel: ObservableObject {
     @Published var glassTypeSelectedIndex           : Int       = 0 {
         didSet {
             self.window.glassType           = GlassType.allCases[glassTypeSelectedIndex]
-            isShowingGlassTypePicker        = false
-            hasPickerOpen                   = false
         }
     }
     let glassTypes                                  : [String]  = GlassType.allCases.map { $0.rawValue }
@@ -49,8 +44,6 @@ class QuoteViewModel: ObservableObject {
     @Published var gasTypeSelectedIndex             : Int       = 0 {
         didSet {
             self.window.gasType             = GasType.allCases[gasTypeSelectedIndex]
-            isShowingGasTypePicker          = false
-            hasPickerOpen                   = false
         }
     }
     let gasTypes                                    : [String]  = GasType.allCases.map { $0.rawValue }
@@ -60,8 +53,6 @@ class QuoteViewModel: ObservableObject {
     @Published var temperedTypeSelectedIndex        : Int       = 0 {
         didSet  {
             self.window.temperedType        = TemperedType.allCases[temperedTypeSelectedIndex]
-            isShowingTemperedTypePicker     = false
-            hasPickerOpen                   = false
         }
     }
     let temperedTypes                               : [String]  = TemperedType.allCases.map { $0.rawValue }
@@ -71,37 +62,59 @@ class QuoteViewModel: ObservableObject {
     @Published var frameTypeSelectedIndex           : Int       = 0 {
         didSet {
             self.window.frameType           = FrameType.allCases[frameTypeSelectedIndex]
-            isShowingFrameTypePicker        = false
-            hasPickerOpen                   = false
         }
     }
     let frameTypes                                  : [String]  = FrameType.allCases.map { $0.rawValue }
     
     var isValidForm: Bool {
-        self.alertItem = AlertContext.invalidForm
-        return false
+        guard window.width != "",
+              window.height != "",
+              window.label != "",
+              isValidNumber(window.width),
+              isValidNumber(window.height)
+        else {
+            alertItem = AlertContext.invalidForm
+            animateToast()
+            
+            return false
+        }
+        
+        alertItem = AlertContext.windowAdded
+        animateToast()
+        
+        return true
     }
     
+    func createNewWindow() {
+        self.window = Window()
+        windowTypeSelectedIndex = 0
+        casementTypeSelectedIndex = 0
+        glassTypeSelectedIndex = 0
+        gasTypeSelectedIndex = 0
+        temperedTypeSelectedIndex = 0
+        frameTypeSelectedIndex = 0
+    }
     
-    // MARK: - Methods
+    func isValidNumber(_ number: String) -> Bool {
+        // a lil sketchy
+        let regex = try! NSRegularExpression(pattern: "[^0-9/ ]+")
+        let range = NSRange(location: 0, length: number.utf16.count)
+        
+        if regex.firstMatch(in: number, options: [], range: range) != nil {
+            return false
+        } else {
+            return true
+        }
+    }
     
-    
-    // MARK: - Currently, Unused
-    @Published var hasPickerOpen                    : Bool      = false
-    @Published var isShowingWindowTypePicker        : Bool      = false
-    @Published var isShowingCasementTypePicker      : Bool      = false
-    @Published var isShowingGlassTypePicker         : Bool      = false
-    @Published var isShowingGasTypePicker           : Bool      = false
-    @Published var isShowingTemperedTypePicker      : Bool      = false
-    @Published var isShowingFrameTypePicker         : Bool      = false
-    
-    func closePickers() {
-        hasPickerOpen               = false
-        isShowingWindowTypePicker   = false
-        isShowingCasementTypePicker = false
-        isShowingGlassTypePicker    = false
-        isShowingGasTypePicker      = false
-        isShowingTemperedTypePicker = false
-        isShowingFrameTypePicker    = false
+    func animateToast() {
+        withAnimation {
+            self.isPresentingToast = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.25) {
+                withAnimation {
+                    self.isPresentingToast = false
+                }
+            }
+        }
     }
 }
