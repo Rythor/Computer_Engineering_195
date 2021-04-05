@@ -10,7 +10,7 @@ import Foundation
 ///
 /// Represents a Window instance.
 ///
-struct Window: Encodable, Identifiable {
+struct Window: Hashable, Encodable, Identifiable {
     let id                                      = UUID()
     
     var width               : String            = ""

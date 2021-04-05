@@ -11,18 +11,17 @@ import SwiftUI
 /// The quote "shopping cart" screen.
 ///
 struct OrderView: View {
-    @EnvironmentObject var quote: Quote
-    
-    @State private var isExpanded: Bool = false
+    @EnvironmentObject var quote    : Quote
+    @State private var isExpanded   : Bool = false
     
     var body: some View {
         NavigationView {
             VStack {
-                List {
-                    ForEach(quote.windows) { window in
-                        // just temporary for testing purposes...
-                        Text(window.label)
-                    }
+                List(
+                    quote.windows.indices,
+                    id: \.self
+                ){ index in
+                    WindowItemCell(window: quote.windows[index], index: index + 1)
                 }
                 .listStyle(PlainListStyle())
             }
