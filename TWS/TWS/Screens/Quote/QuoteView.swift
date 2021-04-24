@@ -57,48 +57,21 @@ struct QuoteView: View {
                         }
                     }
                     
-                    // Window Type
+                    // Type
                     VStack {
-                        SectionHeader(text: "Window Type")
-                        SelectionView(options: viewModel.windowTypes,
-                                      selectedIndex: $viewModel.windowTypeSelectedIndex)
+                        SectionHeader(text: "Opening")
+                        SelectionView(options: viewModel.openingTypes,
+                                      selectedIndex: $viewModel.openingTypeSelectedIndex)
                     }
                     
-                    
-                    // Casement Type
+                    // Types associated with the above Opening Type
                     VStack {
-                        SectionHeader(text: "Casement Type")
-                        SelectionView(options: viewModel.casementTypes,
-                                      selectedIndex: $viewModel.casementTypeSelectedIndex)
+                        SectionHeader(text: "Type")
+                        SelectionView(options: viewModel.currentAssociatedTypes,
+                                      selectedIndex: viewModel.getAssociatedSelectedIndexBasedOffOpeningType())
                     }
                     
-                    // Glass Type
-                    VStack {
-                        SectionHeader(text: "Glass Type")
-                        SelectionView(options: viewModel.glassTypes,
-                                      selectedIndex: $viewModel.glassTypeSelectedIndex)
-                    }
-                    
-                    // Gas Type
-                    VStack {
-                        SectionHeader(text: "Gas Type")
-                        SelectionView(options: viewModel.gasTypes,
-                                      selectedIndex: $viewModel.gasTypeSelectedIndex)
-                    }
-                    
-                    // Tempered Type
-                    VStack {
-                        SectionHeader(text: "Tempered Type")
-                        SelectionView(options: viewModel.temperedTypes,
-                                      selectedIndex: $viewModel.temperedTypeSelectedIndex)
-                    }
-                    
-                    // Frame Type
-                    VStack {
-                        SectionHeader(text: "Frame Type")
-                        SelectionView(options: viewModel.frameTypes,
-                                      selectedIndex: $viewModel.frameTypeSelectedIndex)
-                    }
+                    Spacer()
                     
                     Button {
                         guard viewModel.isValidForm else { return }
@@ -126,3 +99,41 @@ struct QuoteView_Previews: PreviewProvider {
             
     }
 }
+
+
+/*
+ // Casement Type
+ VStack {
+     SectionHeader(text: "Casement Type")
+     SelectionView(options: viewModel.casementTypes,
+                   selectedIndex: $viewModel.casementTypeSelectedIndex)
+ }
+ 
+ // Glass Type
+ VStack {
+     SectionHeader(text: "Glass Type")
+     SelectionView(options: viewModel.glassTypes,
+                   selectedIndex: $viewModel.glassTypeSelectedIndex)
+ }
+ 
+ // Gas Type
+ VStack {
+     SectionHeader(text: "Gas Type")
+     SelectionView(options: viewModel.gasTypes,
+                   selectedIndex: $viewModel.gasTypeSelectedIndex)
+ }
+ 
+ // Tempered Type
+ VStack {
+     SectionHeader(text: "Tempered Type")
+     SelectionView(options: viewModel.temperedTypes,
+                   selectedIndex: $viewModel.temperedTypeSelectedIndex)
+ }
+ 
+ // Frame Type
+ VStack {
+     SectionHeader(text: "Frame Type")
+     SelectionView(options: viewModel.frameTypes,
+                   selectedIndex: $viewModel.frameTypeSelectedIndex)
+ }
+ */

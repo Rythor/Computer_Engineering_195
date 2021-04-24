@@ -9,69 +9,74 @@ import SwiftUI
 
 class QuoteViewModel: ObservableObject {
     // MARK: - Properties
-    @Published var window = Window()
-    @Published var alertItem = AlertContext.none
-    @Published var isPresentingToast: Bool = false
     
-    // window type
-    @Published var windowTypeSelectedIndex          : Int       = 0 {
+    @Published var window                       = Window()
+    @Published var alertItem                    = AlertContext.none
+    @Published var isPresentingToast    : Bool  = false
+    @Published var didSelectOpeningType : Bool  = false
+    
+    @Published var noOpeningTypeSelectedIndex       : Int!      = 0
+    
+    @Published var openingTypeSelectedIndex         : Int!      = 0 {
         didSet {
-            self.window.type            = WindowType.allCases[windowTypeSelectedIndex]
+            self.window.openingType                             = OpeningType.allCases[openingTypeSelectedIndex!]
+            setCurrentAssociatedTypes()
+            nilAssociatedTypesSelectedIndices()
+        }
+    }
+    let openingTypes                                : [String]  = OpeningType.allCases.map { $0.rawValue }
+    
+    
+    @Published var windowTypeSelectedIndex          : Int?      {
+        didSet {
+            if let index = windowTypeSelectedIndex {
+                self.window.windowType                          = WindowType.allCases[index]
+            } else { self.window.windowType = nil }
         }
     }
     let windowTypes                                 : [String]  = WindowType.allCases.map { $0.rawValue }
     
     
-    // casement  type
-    @Published var casementTypeSelectedIndex        : Int       = 0 {
+    @Published var windowInsertTypeSelectedIndex    : Int?      {
         didSet {
-            self.window.casementSideType    = CasementSideType.allCases[casementTypeSelectedIndex]
+            if let index = windowInsertTypeSelectedIndex {
+                self.window.windowInsertType                     = WindowInsertType.allCases[index]
+            } else { self.window.windowInsertType = nil }
         }
     }
-    let casementTypes                               : [String]  = CasementSideType.allCases.map { $0.rawValue }
+    let windowInsertTypes                           : [String]  = WindowInsertType.allCases.map { $0.rawValue }
     
     
-    // glass type
-    @Published var glassTypeSelectedIndex           : Int       = 0 {
+    @Published var slidingDoorTypeSelectedIndex     : Int?       {
         didSet {
-            self.window.glassType           = GlassType.allCases[glassTypeSelectedIndex]
+            if let index = slidingDoorTypeSelectedIndex {
+                self.window.slidingDoorType                      = SlidingDoorType.allCases[index]
+            } else { self.window.slidingDoorType = nil }
         }
     }
-    let glassTypes                                  : [String]  = GlassType.allCases.map { $0.rawValue }
+    let slidingDoorTypes                            : [String]  = SlidingDoorType.allCases.map { $0.rawValue }
     
     
-    // gas type
-    @Published var gasTypeSelectedIndex             : Int       = 0 {
+    @Published var hingedDoorTypeSelectedIndex      : Int?       {
         didSet {
-            self.window.gasType             = GasType.allCases[gasTypeSelectedIndex]
+            if let index = hingedDoorTypeSelectedIndex {
+                self.window.hingedDoorType                       = HingedDoorType.allCases[index]
+            } else { self.window.hingedDoorType = nil }
         }
     }
-    let gasTypes                                    : [String]  = GasType.allCases.map { $0.rawValue }
+    let hingedDoorTypes                             : [String]  = HingedDoorType.allCases.map { $0.rawValue }
     
     
-    // tempered type
-    @Published var temperedTypeSelectedIndex        : Int       = 0 {
-        didSet  {
-            self.window.temperedType        = TemperedType.allCases[temperedTypeSelectedIndex]
-        }
-    }
-    let temperedTypes                               : [String]  = TemperedType.allCases.map { $0.rawValue }
-    
-    
-    // frame type
-    @Published var frameTypeSelectedIndex           : Int       = 0 {
-        didSet {
-            self.window.frameType           = FrameType.allCases[frameTypeSelectedIndex]
-        }
-    }
-    let frameTypes                                  : [String]  = FrameType.allCases.map { $0.rawValue }
+    @Published var currentAssociatedTypes           : [String]  = ["--"]
     
     var isValidForm: Bool {
         guard window.width != "",
               window.height != "",
               window.label != "",
               isValidNumber(window.width),
-              isValidNumber(window.height)
+              isValidNumber(window.height),
+              window.openingType != .noSelection,
+              isAssociatedTypeSelected()
         else {
             alertItem = AlertContext.invalidForm
             animateToast()
@@ -85,15 +90,113 @@ class QuoteViewModel: ObservableObject {
         return true
     }
     
-    func createNewWindow() {
-        self.window = Window()
-        windowTypeSelectedIndex = 0
-        casementTypeSelectedIndex = 0
-        glassTypeSelectedIndex = 0
-        gasTypeSelectedIndex = 0
-        temperedTypeSelectedIndex = 0
-        frameTypeSelectedIndex = 0
+    
+    // MARK: - Methods
+    
+    func setCurrentAssociatedTypes() {
+        switch window.openingType {
+            case .noSelection:
+                currentAssociatedTypes = ["--"]
+            case .window:
+                currentAssociatedTypes = windowTypes
+            case .windowInsert:
+                currentAssociatedTypes = windowInsertTypes
+            case .slidingDoor:
+                currentAssociatedTypes = slidingDoorTypes
+            case .hingedDoor:
+                currentAssociatedTypes = hingedDoorTypes
+        }
     }
+    
+    func isAssociatedTypeSelected() -> Bool {
+        switch window.openingType {
+        case .noSelection:
+            return false
+        case .window:
+            if window.windowType == nil {
+                return false
+            } else { return true }
+        case .windowInsert:
+            if window.windowInsertType == nil {
+                return false
+            } else { return true }
+        case .slidingDoor:
+            if window.slidingDoorType == nil {
+                return false
+            } else { return true }
+        case .hingedDoor:
+            if window.hingedDoorType == nil {
+                return false
+            } else { return true }
+        }
+    }
+    
+    
+    func getAssociatedSelectedIndexBasedOffOpeningType() -> Binding<Int?> {
+        switch window.openingType {
+            case .noSelection:
+                return Binding(
+                    get: {
+                        self.noOpeningTypeSelectedIndex
+                    },
+                    set: {
+                        self.noOpeningTypeSelectedIndex = $0
+                    }
+                )
+            case .window:
+                return Binding(
+                    get: {
+                        self.windowTypeSelectedIndex
+                    },
+                    set: {
+                        self.windowTypeSelectedIndex = $0
+                    }
+                )
+            case .windowInsert:
+                return Binding(
+                    get: {
+                        self.windowInsertTypeSelectedIndex
+                    },
+                    set: {
+                        self.windowInsertTypeSelectedIndex = $0
+                    }
+                )
+            case .slidingDoor:
+                return Binding(
+                    get: {
+                        self.slidingDoorTypeSelectedIndex
+                    },
+                    set: {
+                        self.slidingDoorTypeSelectedIndex = $0
+                    }
+                )
+            case .hingedDoor:
+                return Binding(
+                    get: {
+                        self.hingedDoorTypeSelectedIndex
+                    },
+                    set: {
+                        self.hingedDoorTypeSelectedIndex = $0
+                    }
+                )
+        }
+    }
+    
+    
+    func createNewWindow() {
+        self.window                     = Window()
+        openingTypeSelectedIndex        = 0
+        nilAssociatedTypesSelectedIndices()
+    }
+    
+    
+    func nilAssociatedTypesSelectedIndices() {
+        windowTypeSelectedIndex         = nil
+        windowInsertTypeSelectedIndex   = nil
+        slidingDoorTypeSelectedIndex    = nil
+        hingedDoorTypeSelectedIndex     = nil
+    }
+    
     
     func isValidNumber(_ number: String) -> Bool {
         // a lil sketchy
@@ -106,6 +209,7 @@ class QuoteViewModel: ObservableObject {
             return true
         }
     }
+    
     
     func animateToast() {
         withAnimation {
