@@ -24,7 +24,7 @@ struct WindowItemCell: View {
             // window properties
             VStack(alignment: .leading, spacing: 10) {
                 HStack {
-                    Text(window.type.rawValue)
+                    Text(window.openingType.rawValue)
                         .font(.title3)
                         .fontWeight(.semibold)
                         .frame(maxWidth: .infinity,
@@ -46,12 +46,7 @@ struct WindowItemCell_Previews: PreviewProvider {
         WindowItemCell(window: Window(width: "55",
                                       height: "65",
                                       label: "Living Room",
-                                      type: .singleHung,
-                                      casementSideType: .right,
-                                      glassType: .lowE270,
-                                      gasType: .no,
-                                      temperedType: .tempered,
-                                      frameType: .blockFrame,
+                                      openingType: .window,
                                       quantity: 1),
                        index: 1)
     }
