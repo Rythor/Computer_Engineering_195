@@ -10,16 +10,23 @@ import SwiftUI
 struct SelectionView: View {
     @Environment(\.colorScheme) var colorScheme
     
-    // here
     var options                         : [String]
-    @Binding var selectedIndex          : Int
+    @Binding var selectedIndex          : Int?
+    
+    var selectionText: String {
+        if let index = selectedIndex {
+            return options[index]
+        } else {
+            return "--"
+        }
+    }
     
     var body: some View {
         Picker(selection: $selectedIndex,
                label:
                 VStack {
                     HStack {
-                        Text(options[selectedIndex])
+                        Text(selectionText)
                             .font(.title3)
                             .foregroundColor(.white)
                         Spacer()
@@ -35,8 +42,8 @@ struct SelectionView: View {
                 .background(colorScheme == .light ? Color.black : Color(UIColor.secondarySystemBackground))
                 .cornerRadius(5)
                ){
-            ForEach(0..<options.count) { index in
-                Text("\(options[index])").tag(index)
+            ForEach(options.indices, id: \.self) { index in
+                Text("\(options[index])").tag(index as Int?)
             }
         }
         .pickerStyle(MenuPickerStyle())
