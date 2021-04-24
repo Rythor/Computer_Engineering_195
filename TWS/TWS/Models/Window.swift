@@ -8,7 +8,7 @@
 import Foundation
 
 ///
-/// Represents a Window instance.
+/// Represents a Marvin Window instance.
 ///
 struct Window: Hashable, Encodable, Identifiable {
     let id                                      = UUID()
@@ -18,38 +18,66 @@ struct Window: Hashable, Encodable, Identifiable {
     
     var label               : String            = ""
     
-    var type                : WindowType        = .singleHung
-    var casementSideType    : CasementSideType  = .defaultType
-    var glassType           : GlassType         = .defaultType
-    var gasType             : GasType           = .defaultType
-    var temperedType        : TemperedType      = .defaultType
-    var frameType           : FrameType         = .defaultType
+    var openingType         : OpeningType       = .noSelection
+    
+    var windowType          : WindowType?       = nil
+    var windowInsertType    : WindowInsertType? = nil
+    var slidingDoorType     : SlidingDoorType?  = nil
+    var hingedDoorType      : HingedDoorType?   = nil
     
     var quantity            : Int               = 1
 }
 
 
 // MARK: - Choices
-// note: models.py differences in value casing
+
+enum OpeningType: String, CaseIterable, Encodable {
+    case noSelection        = "--"
+    case window             = "Window"
+    case windowInsert       = "Window Insert"
+    case slidingDoor        = "Sliding Door"
+    case hingedDoor         = "Hinged Door"
+}
+
 enum WindowType: String, CaseIterable, Encodable {
+    case fixedWindow        = "Fixed Window"
     case singleHung         = "Single Hung"
     case doubleHung         = "Double Hung"
-    case casement           = "Casement"
+    case lhCasement         = "LH Casement"
+    case rhCasement         = "RH Casement"
+    case xoSlider           = "XO Slider"
+    case oxSlider           = "OX Slider"
     case awning             = "Awning"
 }
 
-enum CasementSideType: String, CaseIterable, Encodable {
-    case defaultType        = "N/A"
-    
-    case right              = "Right"
-    case left               = "Left"
+enum WindowInsertType: String, CaseIterable, Encodable {
+    case fixedWindow        = "Fixed Window"
+    case singleHung         = "Single Hung"
+    case doubleHung         = "Double Hung"
+    case lhCasement         = "LH Casement"
+    case rhCasement         = "RH Casement"
+    case xoSlider           = "XO Slider"
+    case oxSlider           = "OX Slider"
+    case awning             = "Awning"
 }
 
-enum SliderType: String, CaseIterable, Encodable {
-    case xo                 = "XO"
-    case ox                 = "OX"
+enum SlidingDoorType: String, CaseIterable, Encodable {
+    case xoSlider           = "XO Slider"
+    case oxSlider           = "OX Slider"
+    case oxoSliderLeft      = "OXO Slider Left"
+    case oxoSliderRight     = "OXO Slider Right"
+    case oxxoSlider         = "OXXO Slider"
 }
 
+enum HingedDoorType: String, CaseIterable, Encodable {
+    case singleLH           = "Single LH"
+    case singleRH           = "Single RH"
+    case doubleXO           = "Double XO"
+    case doubleOX           = "Double OX"
+}
+
+// MARK: - Old,
+/* but possibly still needed
 enum GlassType: String, CaseIterable, Encodable {
     case defaultType        = "N/A"
     
@@ -57,25 +85,4 @@ enum GlassType: String, CaseIterable, Encodable {
     case lowE360            = "Low-E 360"
     case obscured           = "Obscured"
 }
-
-enum GasType: String, CaseIterable, Encodable {
-    case defaultType        = "N/A"
-    
-    case yes                = "Yes"
-    case no                 = "No"
-}
-
-enum TemperedType: String, CaseIterable, Encodable {
-    case defaultType        = "N/A"
-    
-    case tempered           = "Tempered"
-    case noTempered         = "No Tempered"
-}
-
-enum FrameType: String, CaseIterable, Encodable {
-    case defaultType        = "N/A"
-    
-    case blockFrame         = "Block"
-    case nailFin            = "Nail Fin"
-    case retrofit           = "Stucco"
-}
+ */
