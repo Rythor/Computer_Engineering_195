@@ -45,9 +45,9 @@ struct WindowItemCell_Previews: PreviewProvider {
     static var previews: some View {
         WindowItemCell(window: Window(width: "55",
                                       height: "65",
-                                      label: "Living Room",
+                                      room: "Living Room",
                                       openingType: .window,
-                                      quantity: 1),
+                                      quantity: "1"),
                        index: 1)
     }
 }
