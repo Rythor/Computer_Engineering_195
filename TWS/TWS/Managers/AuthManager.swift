@@ -12,16 +12,16 @@ import Foundation
 ///
 final class AuthManager {
     // MARK: - Properties
-    static let shared           = AuthManager()
-    let baseEndpoint            = "https://account.uipath.com/oauth/token"
+    static let shared               = AuthManager()
+    let baseEndpoint                = "https://account.uipath.com/oauth/token"
     
-    private let grantType       : StaticString  = "refresh_token"
-    private let clientID        : StaticString  = "8DEv1AMNXczW3y4U15LL3jYf62jK93n5"
-    private let userKey         : StaticString  = "3FLWmXoKSb95uPNu60X4KEFZIOxNHee-apJ2ltsLaD64D"
+    private let grantType           : StaticString  = "refresh_token"
+    private let clientID            : StaticString  = "8DEv1AMNXczW3y4U15LL3jYf62jK93n5"
+    private let userKey             : StaticString  = "3FLWmXoKSb95uPNu60X4KEFZIOxNHee-apJ2ltsLaD64D"
     
-    private let tenantName      : StaticString  = "KeithDefault"
+    private let tenantName          : StaticString  = "KeithDefault"
     
-    private var accessToken     : String? // valid for only 24 hours! regenerate using the userKey
+    private var accessToken         : String? // valid for only 24 hours! regenerate using the userKey
 
     
     // MARK: - Init
@@ -32,7 +32,7 @@ final class AuthManager {
     ///
     /// Requests authorization from the UiPath Automation Cloud.
     ///
-    public func requestAuth() {
+    public func requestAuth(completionHandler: @escaping (String) -> Void) {
         guard let url = URL(string: baseEndpoint) else { return }
         
         var request         = URLRequest(url: url)
@@ -68,11 +68,12 @@ final class AuthManager {
             }
             
             do {
-                let jsonObject = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                // now decode the json
+                let jsonObject = try JSONSerialization.jsonObject(with: data, options: [])
                 if let json = jsonObject as? [String: Any] {
                     if let accessToken = json["access_token"] as? String {
                         self.accessToken = accessToken
+                        
+                        completionHandler(accessToken) // now trigger the rpa
                     } else {
                         print("could not find any access token")
                     }
