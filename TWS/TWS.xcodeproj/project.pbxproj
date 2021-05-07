@@ -26,6 +26,7 @@
 		275B918E25E308DF00597926 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275B918D25E308DF00597926 /* SectionHeader.swift */; };
 		275C9CEB2613A47B00C854BB /* UISearchControllerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C9CEA2613A47B00C854BB /* UISearchControllerProvider.swift */; };
 		275C9CEE2613AA1900C854BB /* ParentViewControllerResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C9CED2613AA1900C854BB /* ParentViewControllerResolver.swift */; };
+		2762C5B626431A8900F014EB /* FilePreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2762C5B526431A8900F014EB /* FilePreviewView.swift */; };
 		2776138F25DFB352005CB95E /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2776138E25DFB351005CB95E /* DatabaseManager.swift */; };
 		2776139425E05024005CB95E /* SQLiteError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2776139325E05024005CB95E /* SQLiteError.swift */; };
 		2776139F25E10A15005CB95E /* TWSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2776139E25E10A15005CB95E /* TWSButton.swift */; };
@@ -42,6 +43,9 @@
 		277999B125C9F04C00D6D84F /* RecentQuotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277999B025C9F04C00D6D84F /* RecentQuotesView.swift */; };
 		277999B525C9F06400D6D84F /* RecentQuotesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277999B425C9F06400D6D84F /* RecentQuotesViewModel.swift */; };
 		277999B825C9F08100D6D84F /* QuoteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277999B725C9F08100D6D84F /* QuoteDetailView.swift */; };
+		278E1707264472EB00A2DB06 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278E1706264472EB00A2DB06 /* LoadingView.swift */; };
+		278E17092644870E00A2DB06 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278E17082644870E00A2DB06 /* DownloadManager.swift */; };
+		278E170B2644945100A2DB06 /* DownloadProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278E170A2644945100A2DB06 /* DownloadProgressView.swift */; };
 		279E6D402617B9C9004716BB /* WindowItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279E6D3F2617B9C9004716BB /* WindowItemCell.swift */; };
 		27D1617A25CB2E44004ED226 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D1617925CB2E44004ED226 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
@@ -66,6 +70,7 @@
 		275B918D25E308DF00597926 /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		275C9CEA2613A47B00C854BB /* UISearchControllerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISearchControllerProvider.swift; sourceTree = "<group>"; };
 		275C9CED2613AA1900C854BB /* ParentViewControllerResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentViewControllerResolver.swift; sourceTree = "<group>"; };
+		2762C5B526431A8900F014EB /* FilePreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePreviewView.swift; sourceTree = "<group>"; };
 		2776138E25DFB351005CB95E /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		2776139325E05024005CB95E /* SQLiteError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteError.swift; sourceTree = "<group>"; };
 		2776139E25E10A15005CB95E /* TWSButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TWSButton.swift; sourceTree = "<group>"; };
@@ -84,6 +89,9 @@
 		277999B025C9F04C00D6D84F /* RecentQuotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentQuotesView.swift; sourceTree = "<group>"; };
 		277999B425C9F06400D6D84F /* RecentQuotesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentQuotesViewModel.swift; sourceTree = "<group>"; };
 		277999B725C9F08100D6D84F /* QuoteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteDetailView.swift; sourceTree = "<group>"; };
+		278E1706264472EB00A2DB06 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		278E17082644870E00A2DB06 /* DownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
+		278E170A2644945100A2DB06 /* DownloadProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadProgressView.swift; sourceTree = "<group>"; };
 		279E6D3F2617B9C9004716BB /* WindowItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowItemCell.swift; sourceTree = "<group>"; };
 		27D1617925CB2E44004ED226 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -130,6 +138,7 @@
 		2714E122260DCB4E00E4C932 /* UIKit Components */ = {
 			isa = PBXGroup;
 			children = (
+				2762C5B2264310F000F014EB /* QLPreviewController */,
 				271306842612C52B00F3F687 /* UITextField */,
 				275C9CE126139B7D00C854BB /* UISearchController */,
 				2714E11F260DCA2B00E4C932 /* VisualEffectView.swift */,
@@ -171,6 +180,14 @@
 				275C9CED2613AA1900C854BB /* ParentViewControllerResolver.swift */,
 			);
 			path = UISearchController;
+			sourceTree = "<group>";
+		};
+		2762C5B2264310F000F014EB /* QLPreviewController */ = {
+			isa = PBXGroup;
+			children = (
+				2762C5B526431A8900F014EB /* FilePreviewView.swift */,
+			);
+			path = QLPreviewController;
 			sourceTree = "<group>";
 		};
 		277613A125E10AE6005CB95E /* Buttons */ = {
@@ -247,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				270822B425E5832800321BC5 /* Alerts */,
+				278E1705264472D900A2DB06 /* Loading Views */,
 				275B918625E3067800597926 /* Form */,
 				277613A125E10AE6005CB95E /* Buttons */,
 				275B918425E3060D00597926 /* Quote Card */,
@@ -286,6 +304,15 @@
 			path = "Recent Quotes";
 			sourceTree = "<group>";
 		};
+		278E1705264472D900A2DB06 /* Loading Views */ = {
+			isa = PBXGroup;
+			children = (
+				278E1706264472EB00A2DB06 /* LoadingView.swift */,
+				278E170A2644945100A2DB06 /* DownloadProgressView.swift */,
+			);
+			path = "Loading Views";
+			sourceTree = "<group>";
+		};
 		279E6D3E2617B963004716BB /* Order Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -299,6 +326,7 @@
 			children = (
 				2717298E25EC67E3006D2006 /* AuthManager.swift */,
 				27D1617925CB2E44004ED226 /* NetworkManager.swift */,
+				278E17082644870E00A2DB06 /* DownloadManager.swift */,
 				2776138E25DFB351005CB95E /* DatabaseManager.swift */,
 			);
 			path = Managers;
@@ -378,6 +406,7 @@
 				27382ACF26127F9B006670A1 /* TWSTextField.swift in Sources */,
 				270822B925E5846400321BC5 /* AlertView.swift in Sources */,
 				2776139F25E10A15005CB95E /* TWSButton.swift in Sources */,
+				278E1707264472EB00A2DB06 /* LoadingView.swift in Sources */,
 				277999AC25C9EF8D00D6D84F /* TWSTabView.swift in Sources */,
 				2714E118260DBA8F00E4C932 /* Toast.swift in Sources */,
 				277999A225C9EC5600D6D84F /* QuoteCard.swift in Sources */,
@@ -397,6 +426,8 @@
 				27D1617A25CB2E44004ED226 /* NetworkManager.swift in Sources */,
 				277999A625C9ECAC00D6D84F /* Gradients.swift in Sources */,
 				27382ABE26126C52006670A1 /* TWSTextFieldRepresentable.swift in Sources */,
+				2762C5B626431A8900F014EB /* FilePreviewView.swift in Sources */,
+				278E170B2644945100A2DB06 /* DownloadProgressView.swift in Sources */,
 				277999B125C9F04C00D6D84F /* RecentQuotesView.swift in Sources */,
 				274ADB6525DA37060006E13E /* QuoteView.swift in Sources */,
 				274ADB6025DA34960006E13E /* BackArrow.swift in Sources */,
@@ -404,6 +435,7 @@
 				275B918E25E308DF00597926 /* SectionHeader.swift in Sources */,
 				2776139425E05024005CB95E /* SQLiteError.swift in Sources */,
 				27382ABA26115E95006670A1 /* Color+Ext.swift in Sources */,
+				278E17092644870E00A2DB06 /* DownloadManager.swift in Sources */,
 				279E6D402617B9C9004716BB /* WindowItemCell.swift in Sources */,
 				274ADB6B25DA3D9B0006E13E /* Window.swift in Sources */,
 				27311C2225E4DE5800886C60 /* Quote.swift in Sources */,
