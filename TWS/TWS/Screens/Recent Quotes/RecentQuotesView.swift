@@ -41,7 +41,7 @@ struct RecentQuotesView: View {
                 .navigationTitle("Recent")
                 .overlay(
                     ParentViewControllerResolver { viewController in
-                    viewController.navigationItem.searchController = self.searchControllerProvider.searchController
+                        viewController.navigationItem.searchController = self.searchControllerProvider.searchController
                     }
                     .frame(width: 0, height: 0)
                 )
