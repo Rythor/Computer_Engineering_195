@@ -72,7 +72,7 @@ class QuoteViewModel: ObservableObject {
     var isValidForm: Bool {
         guard window.width != "",
               window.height != "",
-              window.label != "",
+              window.room != "",
               isValidNumber(window.width),
               isValidNumber(window.height),
               window.openingType != .noSelection,

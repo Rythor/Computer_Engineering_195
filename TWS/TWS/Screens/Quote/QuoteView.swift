@@ -12,7 +12,7 @@ import SwiftUI
 ///
 struct QuoteView: View {
     @EnvironmentObject var quote: Quote
-    @StateObject var viewModel  = QuoteViewModel()
+    @StateObject var viewModel = QuoteViewModel()
 
     var body: some View {
         NavigationView {
@@ -50,7 +50,7 @@ struct QuoteView: View {
                             TWSTextFieldRepresentable(placeholder: "Label",
                                           keyboardType: nil,
                                           autoCapitalizationType: .words,
-                                          text: $viewModel.window.label)
+                                          text: $viewModel.window.room)
                                 .frame(height: 65)
                             Divider()
                                 .frame(height: 1)
@@ -99,41 +99,3 @@ struct QuoteView_Previews: PreviewProvider {
             
     }
 }
-
-
-/*
- // Casement Type
- VStack {
-     SectionHeader(text: "Casement Type")
-     SelectionView(options: viewModel.casementTypes,
-                   selectedIndex: $viewModel.casementTypeSelectedIndex)
- }
- 
- // Glass Type
- VStack {
-     SectionHeader(text: "Glass Type")
-     SelectionView(options: viewModel.glassTypes,
-                   selectedIndex: $viewModel.glassTypeSelectedIndex)
- }
- 
- // Gas Type
- VStack {
-     SectionHeader(text: "Gas Type")
-     SelectionView(options: viewModel.gasTypes,
-                   selectedIndex: $viewModel.gasTypeSelectedIndex)
- }
- 
- // Tempered Type
- VStack {
-     SectionHeader(text: "Tempered Type")
-     SelectionView(options: viewModel.temperedTypes,
-                   selectedIndex: $viewModel.temperedTypeSelectedIndex)
- }
- 
- // Frame Type
- VStack {
-     SectionHeader(text: "Frame Type")
-     SelectionView(options: viewModel.frameTypes,
-                   selectedIndex: $viewModel.frameTypeSelectedIndex)
- }
- */
