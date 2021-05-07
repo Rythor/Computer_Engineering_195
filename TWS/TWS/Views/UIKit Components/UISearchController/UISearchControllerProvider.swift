@@ -38,7 +38,7 @@ extension UISearchControllerProvider: UISearchResultsUpdating {
             }
             return
         }
-        print(text)
+        
         DispatchQueue.main.async {
             self.isSearching = true
             self.text = text.lowercased()
