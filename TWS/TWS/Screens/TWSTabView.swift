@@ -25,6 +25,7 @@ struct TWSTabView: View {
                     Image(systemName: "bag")
                     Text("Order")
                 }
+                .environmentObject(DownloadManager.shared)
             RecentQuotesView()
                 .tabItem {
                     Image(systemName: "mail.stack")
