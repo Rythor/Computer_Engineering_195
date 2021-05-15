@@ -29,8 +29,8 @@ struct Window: Hashable, Codable, Identifiable {
     // defaulting the following group for now
     var category                : String            = "Signature"
     var productLine             : String            = "Ultimate-Clad"
-    var frameInstallation       : String            = "Nailing Fin"
-    var glass                   : String            = "Clear"
+    var frameInstallation       : String            = "Nailing Fin" // No Fin
+    var glass                   : String            = "Clear" // Tempered, Obscured, Tempered & Obscured, Laminated, Clear
     var color                   : String            = "Stone White"
     
     var quantity                : String            = "1"
@@ -105,13 +105,12 @@ enum OpeningType: String, CaseIterable, Codable {
 }
 
 enum WindowType: String, CaseIterable, Codable {
-    case fixedWindow        = "Fixed Window"
     case singleHung         = "Single Hung"
     case doubleHung         = "Double Hung"
-    case lhCasement         = "LH Casement"
-    case rhCasement         = "RH Casement"
-    case xoSlider           = "XO Slider"
-    case oxSlider           = "OX Slider"
+    case lhCasement         = "Casement Left"
+    case rhCasement         = "Casement Right"
+    case xoSlider           = "Slider XO"
+    case oxSlider           = "Slider OX"
     case awning             = "Awning"
 }
 

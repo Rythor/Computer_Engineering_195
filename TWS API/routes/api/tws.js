@@ -2,12 +2,12 @@
 
 const express   = require('express');
 const multer    = require('multer');
-const path      = require('path');
-const fs        = require('fs');
+const parser    = require('body-parser');
 
 const router    = express.Router();
 
-let downloadNumber = 0;
+let quoteFilename = "";
+let didReceiveFile = false;
 
 
 // --- MULTER CONFIG ---
@@ -31,14 +31,29 @@ router.get("/ping", (req, res) => {
 });
 
 router.post("/quote", uploads.single('pdf_f'), (req, res) => {
-    console.log(req.file); // checking file metadata
+    // checking file metadata
+    console.log(req.file);
+    console.log(req.body);
+
+    // set
+    quoteFilename = req.file.originalname;
+    didReceiveFile = true;
+
+    // done
     res.send("File uploaded successfully")
 });
 
 router.get('/quote', (req, res) => {
-    // set the content-disposition header
-    res.setHeader("Content-Disposition", `attachment; filename="${downloadNumber++}-ref.pdf"`);
-    res.sendFile('ref.pdf', {'root': '../TWS\ API/quotes'});
+    if (!didReceiveFile) {
+        res.sendStatus(404);
+    } else {
+        // reset this
+        didReceiveFile = false;
+
+        // then send
+        res.setHeader("Content-Disposition", `attachment; filename="${quoteFilename}`);
+        res.sendFile(quoteFilename, {'root': '../TWS\ API/quotes'});
+    }
 });
  
 module.exports = router; 

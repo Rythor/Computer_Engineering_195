@@ -12,18 +12,19 @@ class OrderViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     
     // MARK: - Methods
-    public func getQuote(for windows: [Window]) {
+    public func runQuote(for windows: [Window]) {
         withAnimation { isLoading = true }
         AuthManager.shared.requestAuth { accessToken in
             NetworkManager.shared.triggerRPA(for: windows, using: accessToken) {
                 DispatchQueue.main.async {
                     withAnimation { self.isLoading = false }
                 }
+                DownloadManager.shared.getQuote()
             }
         }
     }
     
     public func downloadQuote(using manager: DownloadManager) {
-        manager.downloadQuote()
+        manager.getQuote()
     }
 }

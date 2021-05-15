@@ -25,9 +25,8 @@ struct OrderView: View {
                     }
                     .listStyle(PlainListStyle())
                     
-                    Button { // testing
-                        //viewModel.getQuote(for: quote.windows)
-                        //viewModel.downloadQuote(using: downloadManager)
+                    Button {
+                        viewModel.runQuote(for: quote.windows)
                     } label: {
                         TWSButton(text: "Get Quote")
                     }
@@ -38,21 +37,11 @@ struct OrderView: View {
                     FilePreviewView(filePath: downloadManager.pathToDownloadedFile,
                                     isPreviewing: $downloadManager.isPreviewing)
                 }
-                
-                /*
-                if isPreviewing {
-                    FilePreviewView(fileURL: file!)
-                }
-                 */
             }
-            .blur(radius: viewModel.isLoading || downloadManager.isDownloading ? 1 : 0)
+            .blur(radius: viewModel.isLoading ? 1 : 0)
             
             if viewModel.isLoading {
-                LoadingView()
-            }
-            
-            if downloadManager.isDownloading {
-                DownloadProgressView(downloadProgress: $downloadManager.downloadProgress)
+                LoadingView(description: "Running the automation...")
             }
         }
     }

@@ -12,6 +12,7 @@ struct TWSApp: App {
     var body: some Scene {
         WindowGroup {
             TWSTabView()
+                .environmentObject(DownloadManager.shared)
         }
     }
 }

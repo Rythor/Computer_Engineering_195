@@ -14,21 +14,25 @@ final class DownloadManager: NSObject, ObservableObject {
     private lazy var urlSession         = URLSession(configuration: .default, delegate: self, delegateQueue: nil)
     private var downloadTask            : URLSessionDownloadTask?
     
-    private let ngrokEndpoint           = "http://bf396d1caadb.ngrok.io/api/quote"
+    private let ngrokEndpoint           = "http://39d3da74ccb1.ngrok.io/api/quote"
+    
+    @Published var isRequestingQuote    : Bool      = false
     
     @Published var isDownloading        : Bool      = false
     @Published var downloadProgress     : Float     = 0
-    
-    @Published var isPreviewing         : Bool      = false // will edit this later
     @Published var pathToDownloadedFile : String    = ""
+    @Published var downloadDidFail      : Bool      = false
+    
+    @Published var isPreviewing         : Bool      = false
+    
     
     // MARK: - Init
     private override init() {}
     
+    
     // MARK: - Methods
-    public func downloadQuote() {
-        withAnimation { isDownloading = true }
-        guard let url = URL(string: ngrokEndpoint) else { return }
+    public func setRequest() -> URLRequest? {
+        guard let url = URL(string: ngrokEndpoint) else { return nil }
         
         var request = URLRequest(url: url)
         
@@ -36,12 +40,28 @@ final class DownloadManager: NSObject, ObservableObject {
         request.httpMethod = "GET"
         request.addValue("multipart/form-data", forHTTPHeaderField: "Accept")
         
-        let downloadTask = urlSession.downloadTask(with: request)
-        downloadTask.resume()
+        return request
+    }
+    
+    
+    public func getQuote() {
+        DispatchQueue.main.async {
+            withAnimation {
+                self.isRequestingQuote = true
+                //isDownloading = true
+                //downloadDidFail = false
+            }
+        }
         
-        self.downloadTask = downloadTask
+        if let request = setRequest() {
+            let downloadTask = urlSession.downloadTask(with: request)
+            downloadTask.resume()
+            
+            self.downloadTask = downloadTask
+        }
     }
 }
+
 
 // MARK: - Extension
 extension DownloadManager: URLSessionDelegate, URLSessionDownloadDelegate {
@@ -52,8 +72,16 @@ extension DownloadManager: URLSessionDelegate, URLSessionDownloadDelegate {
                     totalBytesExpectedToWrite: Int64
     ){
         if downloadTask == self.downloadTask {
-            DispatchQueue.main.async {
-                self.downloadProgress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
+            if let response = downloadTask.response as? HTTPURLResponse {
+                if (200...299).contains(response.statusCode) {
+                    DispatchQueue.main.async {
+                        self.isRequestingQuote = false
+                        self.isDownloading = true // sure
+                        self.downloadDidFail = false
+                        
+                        self.downloadProgress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
+                    }
+                }
             }
         }
     }
@@ -70,6 +98,15 @@ extension DownloadManager: URLSessionDelegate, URLSessionDownloadDelegate {
         }
         guard let response = downloadTask.response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
             print("bad response")
+            
+            // retry --
+            if let request = setRequest() {
+                let downloadTask = urlSession.downloadTask(with: request)
+                downloadTask.resume()
+                
+                self.downloadTask = downloadTask
+            }
+            
             return
         }
         
@@ -78,11 +115,15 @@ extension DownloadManager: URLSessionDelegate, URLSessionDownloadDelegate {
                                                        in: .userDomainMask,
                                                        appropriateFor: nil,
                                                        create: false) as NSURL
-            let savedURL = documentsURL.appendingPathComponent(response.suggestedFilename!)!//.deletingPathExtension().appendingPathExtension("pdf")
-            try FileManager.default.moveItem(at: location, to: savedURL) // file must be moved/copied to persist past end of callback
             
-            print("file successfully saved to: \(savedURL)")
-            DispatchQueue.main.async { self.pathToDownloadedFile = savedURL.path; self.isPreviewing = true }
+            let savedURL = documentsURL.appendingPathComponent(location.lastPathComponent)?.deletingPathExtension().appendingPathExtension("pdf")
+            try FileManager.default.moveItem(at: location, to: savedURL!)
+            
+            print("file successfully saved to: \(savedURL!)")
+            DispatchQueue.main.async {
+                self.pathToDownloadedFile = savedURL!.path
+                self.isPreviewing = true
+            }
         } catch {
             print("There was an error moving the file: \(error)")
         }
@@ -91,5 +132,13 @@ extension DownloadManager: URLSessionDelegate, URLSessionDownloadDelegate {
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         if let error = error { print("Completed with error: \(error)") }
+        DispatchQueue.main.async {
+            withAnimation {
+                //self.isRequestingQuote = false
+                self.isDownloading = false
+                self.downloadProgress = 0
+                self.downloadDidFail = true
+            }
+        }
     }
 }

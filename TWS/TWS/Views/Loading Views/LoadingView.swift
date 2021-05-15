@@ -11,12 +11,19 @@ import SwiftUI
 /// A native SwiftUI ProgressView / UIKit UIActivityIndicator.
 ///
 struct LoadingView: View {
+    let description: String
     var body: some View {
         ZStack {
-            Color(.clear)
+            VisualEffectView()
                 .edgesIgnoringSafeArea(.all)
-            ProgressView()
-                .progressViewStyle(CircularProgressViewStyle(tint: .twsBlue))
+            VStack(spacing: 5) {
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: .twsBlue))
+                Text(description)
+                    .font(.body)
+                    .multilineTextAlignment(.center)
+            }
+            .padding()
         }
     }
 }

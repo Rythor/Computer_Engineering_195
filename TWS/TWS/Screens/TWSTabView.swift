@@ -12,28 +12,38 @@ import SwiftUI
 ///
 struct TWSTabView: View {
     var quote = Quote()
+    @EnvironmentObject var downloadManager: DownloadManager
     
     var body: some View {
-        TabView {
-            QuoteView()
-                .tabItem {
-                    Image(systemName: "house")
-                    Text("Quote")
-                }
-            OrderView()
-                .tabItem {
-                    Image(systemName: "bag")
-                    Text("Order")
-                }
-                .environmentObject(DownloadManager.shared)
-            RecentQuotesView()
-                .tabItem {
-                    Image(systemName: "mail.stack")
-                    Text("Recent")
-                }
+        ZStack {
+            TabView {
+                QuoteView()
+                    .tabItem {
+                        Image(systemName: "house")
+                        Text("Quote")
+                    }
+                OrderView()
+                    .tabItem {
+                        Image(systemName: "bag")
+                        Text("Order")
+                    }
+                RecentQuotesView()
+                    .tabItem {
+                        Image(systemName: "mail.stack")
+                        Text("Recent")
+                    }
+            }
+            .accentColor(.primary)
+            .environmentObject(quote)
+            
+            if downloadManager.isRequestingQuote {
+                LoadingView(description: "Please wait while the automation completes your quote.")
+            }
+            
+            if downloadManager.isDownloading {
+                DownloadProgressView(downloadProgress: $downloadManager.downloadProgress)
+            }
         }
-        .accentColor(.primary)
-        .environmentObject(quote)
     }
 }
 
