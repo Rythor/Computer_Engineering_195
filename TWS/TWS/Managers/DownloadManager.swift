@@ -14,7 +14,7 @@ final class DownloadManager: NSObject, ObservableObject {
     private lazy var urlSession         = URLSession(configuration: .default, delegate: self, delegateQueue: nil)
     private var downloadTask            : URLSessionDownloadTask?
     
-    private let ngrokEndpoint           = "http://39d3da74ccb1.ngrok.io/api/quote"
+    private let ngrokEndpoint           = "http://32e9adc7ae75.ngrok.io/api/quote"
     
     @Published var isRequestingQuote    : Bool      = false
     
